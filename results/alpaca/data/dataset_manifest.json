@@ -1,0 +1,8 @@
+{
+  "dataset_id": "tatsu-lab/alpaca",
+  "dataset_revision": "dce01c9b08f87459cf36a430d809084718273017",
+  "split": "train",
+  "selection_seed": "av-faithfulness-v1-alpaca-2000",
+  "n": 2000,
+  "distinct_user_prompt_hashes": 2000
+}
