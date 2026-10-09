@@ -21,7 +21,7 @@ The sentence-level faithfulness of the beta=0.01 explanations (17.5% vs 14.3%
 supported) is checked by `soar_nla.faithfulness.paper_numbers`.
 
 Other subsets, for reference: `all` 2,000 rollouts; `long_responses` 1,543
-(`assistant_token_count >= 100`, the Loss Recovered set); `sol_word_tokens`, the
+(`assistant_token_count >= 100`); `sol_word_tokens`, the
 143 of the 200 surgically edited examples whose sampled token contains a letter
 or digit ("GCG on the same examples", 8.4% at beta=0.01).
 

@@ -415,7 +415,7 @@
  },
  {
   "section": "Appendix: other layers",
-  "claim": "L24, four tokens: donor (not quoted)",
+  "claim": "L24, four tokens: donor",
   "config": "gemma3-12b-custom-L24",
   "experiment": "icl_redirect",
   "format": "raw",

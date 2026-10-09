@@ -29,6 +29,9 @@ CUSTOM_L24 = ("achand45/gemma-3-12b-it-nla-L24", "83e015a0e9af61cb703695d20fd63c
 CUSTOM_L32 = ("achand45/gemma-3-12b-it-nla-L32", "6bad086e3653a8e4466b430bf6713b9de547821f")
 CUSTOM_L40 = ("achand45/gemma-3-12b-it-nla-L40", "edb2ef921706d837927a3138d9c22a5f13add89a")
 
+# Gemma Scope 2 residual-stream SAEs for Gemma-3-12B-IT (Loss Recovered SAE baseline).
+GEMMA_SCOPE_2_12B = ("google/gemma-scope-2-12b-it", "4c419f1ba0be8b7754d4151d4f26c23b92a9029e")
+
 
 @dataclass(frozen=True)
 class ModelSpec:
@@ -116,10 +119,11 @@ def resolve_decoder_layers(model: torch.nn.Module) -> torch.nn.ModuleList:
     return found[0]
 
 
-def load_target(spec: ModelSpec, device: str = "cuda:0") -> tuple[Any, Any, Path]:
+def load_target(spec: ModelSpec, device: str = "cuda:0", checkpoint: Path | None = None) -> tuple[Any, Any, Path]:
+    """Load the target model; `checkpoint` overrides the pinned snapshot with a local copy."""
     from transformers import AutoModelForCausalLM, AutoTokenizer
 
-    checkpoint = resolve_snapshot(spec.target_id, spec.target_revision)
+    checkpoint = checkpoint or resolve_snapshot(spec.target_id, spec.target_revision)
     tokenizer = AutoTokenizer.from_pretrained(checkpoint, local_files_only=True, trust_remote_code=True)
     tokenizer.padding_side = "left"
     if tokenizer.pad_token_id is None:

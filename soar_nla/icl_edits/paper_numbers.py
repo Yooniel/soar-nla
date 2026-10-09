@@ -52,7 +52,7 @@ CLAIMS = [
     ("Appendix: other layers", "L24, four tokens: substitution", L24, "redirect", "raw", ("rate", "last4", "substitute_only"), "92%"),
     ("Appendix: other layers", "L24, four tokens: combined edit", L24, "redirect", "raw", ("rate", "last4", "edited"), "81%"),
     ("Appendix: other layers", "L24, four tokens: rewrite only", L24, "redirect", "raw", ("rate", "last4", "rewrite_only"), "17%"),
-    ("Appendix: other layers", "L24, four tokens: donor (not quoted)", L24, "redirect", "raw", ("rate", "last4", "donor"), None),
+    ("Appendix: other layers", "L24, four tokens: donor", L24, "redirect", "raw", ("rate", "last4", "donor"), None),
     ("Appendix: other layers", "L24, final token: combined edit (\"nearly ineffective\")", L24, "redirect", "raw", ("rate", "last1", "edited"), None),
     ("Appendix: other layers", "L40, query token: any edit (\"no target answers\")", L40, "redirect", "raw", ("max_rate", ("query",), ("substitute_only", "rewrite_only", "edited")), "0%"),
     ("Appendix: other layers", "L40, final token: substitution", L40, "redirect", "raw", ("rate", "last1", "substitute_only"), "70%"),

@@ -1,9 +1,10 @@
 """Loading and filtering the shared Alpaca rollouts.
 
-The paper uses two different filters on the same 2,000 rollouts:
+Two filters on the same 2,000 rollouts:
 
-- `long_responses`: `assistant_token_count >= 100`, 1,543 rollouts. Loss
-  Recovered needs 100 response tokens.
+- `long_responses`: `assistant_token_count >= 100`, 1,543 rollouts, reported for
+  reference only. Loss Recovered uses other rollouts (`soar_nla.loss_recovered`);
+  its 1,543 windows are a different set.
 - `late_positions`: `sequence_token_index > 50`, i.e. the sampled position lies
   after token 50 of the full chat-rendered sequence, 1,573 rollouts. GCG, its
   random-substitution control and the surgical-edit experiment use this set

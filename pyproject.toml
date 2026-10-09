@@ -29,6 +29,9 @@ dependencies = [
 judge = ["openai"]
 # Google IFEval instruction checkers (soar_nla/benchmarks/ifeval_lib); nltk needs the punkt and punkt_tab data.
 ifeval = ["absl-py", "langdetect", "nltk", "immutabledict"]
+# Paper figures: the side-by-side GCG composite (Pillow) and HarfBuzz shaping of the
+# Devanagari token in the GCG example (soar_nla/text_panels.py, bundled Noto font).
+figures = ["pillow", "uharfbuzz", "fonttools"]
 
 # Not pip-installable as a plain dependency; see README "Setup":
 #   sglang : 0.5.9 source checkout, patched with patches/sglang/apply_sglang_patches.sh
@@ -42,6 +45,7 @@ include = ["soar_nla*"]
 "*" = ["*.json", "*.yaml", "*.txt", "*.md", "NOTICE"]
 "soar_nla.icl_edits" = ["configs/*.yaml"]
 "soar_nla.faithfulness" = ["*.json.gz"]
+"soar_nla" = ["assets/fonts/*.ttf", "assets/fonts/OFL.txt"]
 
 [tool.ruff]
 line-length = 119

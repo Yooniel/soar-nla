@@ -110,6 +110,15 @@ ROLLOUTS=results/benchmarks/rollouts soar_nla/benchmarks/make_figures.sh
 * `rollouts/<task>__<condition>.jsonl.gz`: every per-example generation behind the
   figure (shard files concatenated verbatim; 0.2–2.4 MB each, 8.0 MB total).
 
+## Paper figures
+
+```bash
+python -m soar_nla.benchmarks.paper_figure   # CPU only, reads figures/allpos_accuracy_strict_average.csv
+```
+
+`figures/clean_vs_nla.{png,pdf}`: clean vs NLA-patched accuracy on the three tasks, from the clean
+and `nla` rows of the figure CSV (same intervals as `figure.py`).
+
 ## Paper claims
 
 | Claim | Script | Output file / field | Value |

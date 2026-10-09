@@ -143,7 +143,7 @@ Spans: `last1` final token, `last4` last four tokens, `query` query token.
 | Donor sweep: final `:` 0 through L24, 38% L28, 78% L32, 98% L40 | gemma3-12b / `icl_redirect_raw` sweep | last1 | 0, .383, .783, .978 |
 | Donor sweep: last four tokens 94-98% through L40 | gemma3-12b / `icl_redirect_raw` sweep | last4 | .944-.983 |
 | L24, query token: substitution 96%, donor 97%, combined 88%, rewrite 19% | gemma3-12b-custom-L24 / `icl_redirect_raw` | query | .960, .970, .882, .193 |
-| L24, four tokens: substitution 92%, combined 81%, rewrite 17% (donor not quoted) | gemma3-12b-custom-L24 / `icl_redirect_raw` | last4 | .922, .810, .165 (.977) |
+| L24, four tokens: substitution 92%, combined 81%, rewrite 17% | gemma3-12b-custom-L24 / `icl_redirect_raw` | last4 | .922, .810, .165 (donor .977) |
 | L24, final-token edits nearly ineffective | gemma3-12b-custom-L24 / `icl_redirect_raw` | last1: edited | .008 |
 | L40, query-token edits produce no target answers | gemma3-12b-custom-L40 / `icl_redirect_raw` | query: all edits | 0 |
 | L40, final token: substitution 70%, rewrite 58%, combined 70%, donor 97% | gemma3-12b-custom-L40 / `icl_redirect_raw` | last1 | .695, .583, .697, .973 |

@@ -144,6 +144,19 @@ used the step-400 critic, which is not published.
 | `judge_ci_bootstrap.txt` | Wilson / item-bootstrap / cluster-bootstrap CIs and paired run differences |
 | `example_source_text.txt` | Source text of the run-A example verbalization |
 
+## Paper figures
+
+```bash
+python -m soar_nla.warmstart_ablation.paper_figure   # CPU only, reads the shipped files
+```
+
+- `figures/training_fve.{png,pdf}`: training-batch FVE of A, B and C up to step 600 with start and
+  best values called out (`fve_curve_*.csv`, unsmoothed; `fve_train.png` is the EMA view).
+- `figures/selfdescribe_judge.{png,pdf}`: judge accuracy per attribute with Wilson 95% intervals
+  and each attribute's chance rate (`judge_summary.json`).
+
+Legends: "Original" = A, "No warm-start, no KL" = B, "No warm-start" = C.
+
 ## Paper claims
 
 | Paper claim | Script | Output → field | Value |

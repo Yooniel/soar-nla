@@ -141,6 +141,19 @@ calls. Without the FVE pipeline outputs it checks only the judge numbers.
 Pipeline intermediates (`fve/{sft,rl}/...`: rows, activations, explanations, reconstructions;
 `sentence_judge/items.jsonl`, `results.jsonl`) are written next to them and are not tracked.
 
+## Paper figures
+
+```bash
+python -m soar_nla.faithfulness.paper_figure   # CPU only, reads the shipped files
+```
+
+- `figures/fve_by_explanation.{png,pdf}`: AV and Sonnet FVE after RL and at the warm-start
+  checkpoint, strict clean subset, bootstrap 95% CIs (`fve_table.json`).
+- `figures/av_vs_sonnet_example.{png,pdf}`: the stepped-spillway passage of
+  `qualitative_example.txt` (FineFineWeb row 1920, RL checkpoint), AV vs Sonnet explanation.
+  The grounded / confabulated highlighting is a manual reading of the passage (phrase lists in
+  `paper_figure.py`); the FVEs 0.801 / −0.162 are that row's values as recorded in the file.
+
 ## Paper claims
 
 | paper claim | script | output → field | value |
@@ -157,5 +170,5 @@ Pipeline intermediates (`fve/{sft,rl}/...`: rows, activations, explanations, rec
 | GCG section: 17.5% (AV) vs 14.3% (GCG β = 0.01) supported | `sentence_judge.py aggregate` | `table.first_two_paragraphs.{alpaca_av,alpaca_gcg_beta_0.01}.percent.Supported` | 17.5 / 14.3 (n = 3,298 each) |
 
 On all 2,000 rows the SFT AV FVE is 0.4825 (it would round to 48.3%); every other FVE above
-rounds the same on either row set. The SFT pair's random-pairing values (not quoted in the
-paper) are −0.6309 (AV) and −0.6123 (Sonnet).
+rounds the same on either row set. The SFT pair's random-pairing values are −0.6309 (AV) and
+−0.6123 (Sonnet).

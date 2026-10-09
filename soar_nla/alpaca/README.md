@@ -1,8 +1,8 @@
 # Shared Alpaca rollouts
 
-The data behind three parts of the paper: **GCG** (`soar_nla.gcg`), the
-**surgical edits** in Faithfulness (`soar_nla.faithfulness.surgical_edits`) and
-**Loss Recovered** ("1,543 Alpaca generations with at least 100 tokens").
+The data behind two parts of the paper: **GCG** (`soar_nla.gcg`) and the
+**surgical edits** in Faithfulness (`soar_nla.faithfulness.surgical_edits`).
+**Loss Recovered** uses different Alpaca rollouts (`soar_nla.loss_recovered`).
 
 ## Protocol
 
@@ -25,7 +25,7 @@ above, so changing either string changes which prompts and positions are used.
 
 | Helper | Filter | Rollouts | Used by |
 |---|---|---:|---|
-| `long_responses` | `assistant_token_count >= 100` | 1,543 | Loss Recovered |
+| `long_responses` | `assistant_token_count >= 100` | 1,543 | reference only (not the Loss Recovered windows) |
 | `late_positions` | `sequence_token_index > 50` | 1,573 | GCG and its random control, surgical edits |
 | both | | 1,348 | |
 
@@ -77,5 +77,4 @@ explanations are not shipped; regenerate them with the commands above.
 
 | Claim | Script | Output | Value |
 |---|---|---|---|
-| 1,543 Alpaca generations with at least 100 tokens | `subsets.long_responses` | `rollouts.jsonl` | 1,543 |
 | 1,573 Alpaca prompts (surgical edits) | `subsets.late_positions` | `rollouts.jsonl` | 1,573 |

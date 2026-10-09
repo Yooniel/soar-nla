@@ -33,7 +33,7 @@ positions 50 and later). The random control was run on the same set. The saved G
 optimized all 2,000 rollouts; per-example results do not depend on which other examples are in
 the run (candidate seeds are per `(sample_id, β)` and `Var(v)` is always computed over all 2,000
 activations), so the 1,573-row numbers are exactly what a 1,573-only run would give.
-`paper_numbers.py` also reports all 2,000 and the 1,543 Loss Recovered rollouts for reference.
+`paper_numbers.py` also reports all 2,000 and the 1,543 `long_responses` rollouts for reference.
 
 **Fluency** (`perplexity.py`). Besides the AV-policy NLL the objective penalizes, each original
 and GCG explanation (β = 0.01 and 0) is scored as bare text under Gemma-3-12B-IT itself: mean
@@ -81,6 +81,19 @@ Without arguments, `plots` and `paper_numbers` run on the shipped files below.
 The shipped `kitft.jsonl.gz` is the paper run's file with the local checkpoint path in
 `scorer_checkpoint` replaced by `repo@revision`.
 
+## Paper figures
+
+```bash
+pip install -e ".[figures]"          # Pillow, uharfbuzz, fontTools (Devanagari token in the example)
+python -m soar_nla.gcg.paper_figure  # CPU only, reads the shipped files
+```
+
+Fig. 3 of the paper is `figures/gcg_fve_and_example.png`: (a) `figures/gcg_beta_fve.{png,pdf}`,
+GCG and random-control FVE per β with bootstrap 95% CIs from `random_control/summary.json`
+(n = 1,573; dotted line = original AV explanations); (b–d) `figures/gcg_example_beta0.01.{png,pdf}`,
+the record in `qualitative_example.txt` (sample `0d689d100cf3550e2a8a`, β = 0.01) with the changed
+words highlighted and its two FVEs from `gcg_losses.jsonl.gz` (0.745 → 0.908).
+
 ## Paper claims
 
 From `paper_numbers.json` (`gcg.late_positions.<β>` unless noted), computed from the per-example
@@ -91,7 +104,7 @@ files; n = 1,573 per β. "±" is the standard error of the mean.
 | Original AV explanations: FVE 72.1% ± 0.5% | `original_fve`, `original_fve_se` | 0.7211 ± 0.0054 |
 | GCG β = 0: FVE 80.7% | `0.0.gcg_fve`, `gcg_fve_se` | 0.8065 ± 0.0042 |
 | GCG β = 0.01: FVE 81.4% (highest) | `0.01.gcg_fve`, `gcg_fve_se` | 0.8141 ± 0.0040 |
-| GCG β = 0.1: FVE (not quoted) | `0.1.gcg_fve` | 0.7721 ± 0.0042 |
+| GCG β = 0.1: FVE 77.2% (Fig. 3) | `0.1.gcg_fve` | 0.7721 ± 0.0042 |
 | Mean NLL under Gemma-3-12B-IT: original 3.84, β = 0.01 4.63, β = 0 5.58 nats/token | `original_gemma_nll`, `gcg_gemma_nll` | 3.838 / 4.629 / 5.577 |
 | AV-policy NLL (the penalized term): original → GCG, β = 0.1 / 0.01 / 0 | `mean_original_av_nll`, `mean_optimized_av_nll` | 0.353 → 0.608 / 2.352 / 4.296 |
 | Mean edit counts 4.36 / 14.36 / 16.41 (β = 0.1 / 0.01 / 0) | `mean_edit_count` | 4.36 / 14.36 / 16.41 |
@@ -102,4 +115,4 @@ files; n = 1,573 per β. "±" is the standard error of the mean.
 The "same examples" for the 8.4% are the 143 of the 200 surgically edited rollouts whose sampled
 token contains a letter or digit (see `soar_nla/faithfulness/surgical_edits/README.md`).
 For reference, the FVE gains on all 2,000 rollouts are +0.0506 / +0.0918 / +0.0846 and on the
-1,543 Loss Recovered rollouts +0.0480 / +0.0893 / +0.0822.
+1,543 `long_responses` rollouts +0.0480 / +0.0893 / +0.0822.
